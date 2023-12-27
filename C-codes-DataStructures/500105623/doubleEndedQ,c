@@ -1,0 +1,172 @@
+#include <stdio.h> 
+#include <stdlib.h>
+#define MAX 5
+
+int deque[MAX] ;
+int front = -1 ;
+int rear = -1 ;
+
+
+void enqueueFront(int) ;
+void enqueueRear(int) ;
+int dequeueFront() ;
+int dequeueRear() ;
+int isFull() ;
+int isEmpty() ;
+void print() ;
+
+
+int main(){
+    int choice , data ;
+    printf("1.Insert at the front.\n") ;
+    printf("2.Insert at the rear.\n") ;
+    printf("3.Delete from the front.\n") ;
+    printf("4.Delete from the rear.\n") ;
+    printf("6.Print the first element.\n") ;
+    printf("7.Print all the elements.\n") ;
+    printf("8.Quit.\n") ;
+    printf("Enter your choice: ") ;
+    scanf("%d" , &choice) ;
+
+    switch(choice){
+        case 1 :
+            printf("Enter the element: ") ;
+            scanf("%d",&data) ;
+            enqueueFront(data) ;
+            printf("\nThe element added at the front is: ", data) ;
+            break ;
+        case 2 :
+            printf("Enter the element: ") ;
+            scanf("%d",&data) ;
+            enqueueRear(data) ;
+            printf("\nThe element added at the rear is: ", data) ;
+            break ;
+        case 3 :
+            printf("%d element has been deleted\n" , dequeueFront)    
+    }
+}
+
+void enqueueFront(int data){
+    if (isFull()){
+        print("Queue Overflow!") ;
+        exit(1) ;
+    }
+    if(front == -1){
+        front = 0 ;
+        rear = 0 ;
+    }
+    else if (front == 0)
+        front = MAX - 1 ;
+    else 
+        front = front -1 ;
+    deque[front] = data ;        
+}
+void enqueueRear(int data){
+    if(isFull()){
+        printf("Queue overflow!") ;
+        exit(1) ;
+    } 
+
+    if (front = -1){
+        front = 0 ;
+        rear = 0 ;  
+    }
+    else if(rear == MAX - 1)
+        rear = 0 ;
+        
+    else
+        rear = rear + 1 ;
+    deque[rear] = data ;    
+}
+
+int dequeueFront(){
+    int data ;
+    if(isEmpty()){
+        printf("Queue Underflow!\n") ;
+        exit(1) ;
+    }
+    data = deque[front] ;
+
+    if(front == rear){
+        front = -1 ;
+        rear = -1 ;
+    }
+    else{
+        if(front == MAX - 1)
+            front = 0 ;
+        else
+            front = front + 1 ;    
+    }
+    return data ;
+}
+
+int dequeueRear(){
+    int data ;  
+
+    if(isEmpty()){
+        printf("Queue Underflow!\n") ;
+        exit(1) ;   
+    }
+    data = deque[rear] ;
+    if(front == rear){
+        front = -1 ;
+        rear = -1 ;
+    }
+    else{
+        if(rear == 0)
+            rear = MAX - 1 ;
+        else
+            rear = rear + 1 ;    
+    }
+    return data ;
+}
+
+int isEmpty(){
+    if(front == -1)
+        return 1 ;
+    else 
+        return 0 ;    
+}
+
+int isFull(){
+    if((front == 0 && rear == MAX - 1) || (front == rear + 1))
+        return 1 ;
+    else 
+        return 0 ;    
+}
+
+int peek(){
+    if(isEmpty()){
+        printf("Queue underflow!\n") ;
+        exit(1) ;
+    }
+    return deque[front] ;
+}
+
+void print(){
+    int temp ;
+    if(isEmpty()){
+        printf("Queue underflow!\n") ;
+        exit(1) ;
+    }
+    temp = front ;
+    if(front <= rear){
+        while(temp <= rear){
+            printf("%d",deque[temp]) ;
+            temp++ ;
+        }
+    }
+    else{
+        while(temp <= MAX -1){
+            printf("%d ",deque[temp]) ;
+            temp++ ;
+        }
+        temp = 0 ;
+        while (temp <= rear){
+            printf("%d ",deque[temp]) ;
+            temp++ ;
+        }
+
+    }
+    printf("\n") ; 
+}
